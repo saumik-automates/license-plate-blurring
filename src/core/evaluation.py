@@ -227,9 +227,10 @@ def _visualize_evaluation_samples(model: YOLO, image_files: list, conf_threshold
                         label,
                         (x1, max(y1 - 10, 10)),
                         cv2.FONT_HERSHEY_SIMPLEX,
-                        0.9,
-                        (255, 0, 0),
                         2,
+                        (0, 255, 255),
+                        5,
+                        cv2.LINE_AA  
                     )
 
                     # 2. Blur
