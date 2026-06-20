@@ -1,0 +1,18 @@
+api:
+  host: 0.0.0.0
+  port: 8000
+inference:
+  blur_intensity: 51
+  conf_threshold: 0.2
+model:
+  default_url: https://github.com/ultralytics/assets/releases/download/v8.3.0/yolov8n.pt
+  default_weights: derived/yolov8n.pt
+  img_size: 640
+  trained_weights: models/best_license_plate_yolov8.pt
+training:
+  batch_size: 16
+  dataset: fareselmenshawii/large-license-plate-dataset
+  epochs: 50
+  fraction: 1
+  patience: 10
+  workers: 8

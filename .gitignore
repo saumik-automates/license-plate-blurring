@@ -1,0 +1,18 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# Unit test / coverage reports
+.pytest_cache/
+
+# Environments
+.venv/
+
+# Ruff / Linting
+.ruff_cache/
+
+# IDEs
+.vscode/
+.gemini/
+
+# YOLOv8 specific / ML
+derived/
