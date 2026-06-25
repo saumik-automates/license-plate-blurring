@@ -25,11 +25,11 @@ def draw_bounding_boxes(img: np.ndarray, detections: list) -> np.ndarray:
         x1, y1, x2, y2 = det["bbox"]
         conf = det["confidence"]
         # Draw rectangle
-        cv2.rectangle(out_img, (x1, y1), (x2, y2), (255, 0, 0), 3)
+        cv2.rectangle(out_img, (x1, y1), (x2, y2), (0, 255, 255), 3)
         # Add label
         label = f"Conf: {conf:.2f}"
         cv2.putText(
-            out_img, label, (x1, max(y1 - 10, 0)), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 0, 0), 2
+            out_img, label, (x1, max(y1 - 10, 0)), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 255), 2
         )
     return out_img
 

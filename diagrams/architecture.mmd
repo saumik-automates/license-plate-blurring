@@ -1,0 +1,47 @@
+flowchart TD
+    %% Define Styles
+    classDef ext fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000;
+    classDef core fill:#e1f5fe,stroke:#0277bd,stroke-width:2px,color:#000;
+    classDef app fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#000;
+    classDef data fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000;
+    classDef conf fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000;
+
+    %% External & Data
+    KaggleHub["KaggleHub (External API)"]:::ext
+    Dataset[("License Plate Dataset (fareselmenshawii)")]:::data
+    KaggleHub -->|Downloads| Dataset
+
+    %% Config
+    Config["config/config.yaml (Centralized Configuration)"]:::conf
+
+    %% Core Components
+    subgraph Core ["Core Engine (src/core/)"]
+        direction TB
+        Training["training.py (YOLOv8 Fine-Tuning)"]:::core
+        Eval["evaluation.py (Metrics & F2-Score)"]:::core
+        Model["model.py (YOLOv8n Instance)"]:::core
+        Processing["processing.py (Inference & Blurring)"]:::core
+        
+        Dataset --> Training
+        Training --> Model
+        Model --> Eval
+        Model --> Processing
+    end
+
+    Config -.->|Configures| Training
+
+    %% App Layer
+    subgraph App ["Application Layer (app/)"]
+        direction TB
+        API["api.py (FastAPI Endpoints)"]:::app
+        UI["ui.py (Gradio Web Interface)"]:::app
+    end
+
+    Config -.->|Configures| API
+    Processing --> API
+    Processing --> UI
+
+    %% Users
+    Client("End User / Client App"):::ext
+    UI <-->|Upload Image| Client
+    API <-->|REST Requests| Client
